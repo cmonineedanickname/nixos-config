@@ -43,7 +43,8 @@
   services.gvfs.enable = true;
   services.tumbler.enable = true;
   services.libinput.enable = true;
-  
+  services.printing.enable = true;
+
   services.greetd = {
     enable = true;
     settings = {
