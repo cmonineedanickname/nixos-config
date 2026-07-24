@@ -1,0 +1,127 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 0,
+
+    "modules-left": ["hyprland/workspaces", "hyprland/submap"],
+
+    "modules-center": ["hyprland/window"],
+
+    "modules-right": [
+        "tray",
+        "mpris",
+        "bluetooth",
+        "temperature",
+        "backlight",
+        "wireplumber",
+        "power-profiles-daemon",
+        "battery",
+        "clock",
+        "custom/power",
+    ],
+
+        
+    "hyprland/submap": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "hyprland/window": {
+        "format": "{title}",
+        "max-length": 60,
+        "ellipsis": "…",
+        "separate-outputs": true,
+        "tooltip": false,
+        "icon": false
+    },
+
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+
+    "mpris": {
+        "format": "{status_icon}",
+        "format-playing": "▶",
+        "format-paused": "||",
+        "player": "spotify_player",
+        "artist-len": 20,
+        "title-len": 30,
+        "dynamic-len": true,
+        "tooltip": true,
+        "tooltip-format": "{status} [{position}/{length}]\n{artist} - {title}",
+        "on-click-right": ""
+    },
+
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "󰂲",
+        "format-connected": "",
+        "tooltip-format": "{device_alias}",
+        "tooltip-format-connected": "{device_alias} {device_battery_percentage}%",
+        "on-click": "kitty --class bluetoothctl -e bluetoothctl"
+    },
+
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-down": "$HOME/.local/scripts/brightness-control.sh down 5",
+        "on-scroll-up": "$HOME/.local/scripts/brightness-control.sh up 5",
+        "tooltip": false,
+    },
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+        "critical-threshold": 80,
+        "format": "{temperatureC} 󰔄",
+        "tooltip": false,
+    },
+
+    "wireplumber": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "󰂯",
+        "format-muted": "󰝟  muted",
+        "format-icons": {
+            "headphone": "󰋋",
+            "default": ["󰕿", "󰖀", "󰕾"],
+        },
+        "on-click": "kitty --class wiremix -e wiremix",
+        "on-click-right": "$HOME/.local/scripts/volume-control.sh mute-toggle",
+        "scroll-step": 5,
+        "tooltip": false,
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15,
+        },
+        "interval": 2,
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 󰂄",
+        "format-plugged": "{capacity}% 󰚥",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    },
+
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}",
+    },
+
+    "custom/power": {
+        "format": "󰐥",
+        "tooltip-format": "Power Menu",
+        "on-click": "$HOME/.local/scripts/power-menu.sh",
+    },
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip": true,
+        "format-icons": {
+            "performance": "",
+            "balanced": "",
+            "power-saver": "",
+        },
+    },
+}

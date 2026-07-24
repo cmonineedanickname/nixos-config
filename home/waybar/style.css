@@ -1,0 +1,171 @@
+@define-color bg rgba(10, 10, 16, 0.62);
+@define-color bg-alt rgba(18, 18, 28, 0.58);
+@define-color fg #e8e8f2;
+@define-color muted #a7a9be;
+
+@define-color neon-blue #6fd6ff;
+@define-color neon-cyan #7ee7ff;
+@define-color neon-purple #a784ff;
+@define-color neon-violet #bf8cff;
+@define-color neon-pink #f08ae8;
+
+@define-color border rgba(120, 130, 180, 0.16);
+@define-color hover rgba(111, 214, 255, 0.10);
+@define-color active rgba(191, 140, 255, 0.12);
+@define-color urgent #ff6b93;
+
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    font-family: "Hack Nerd Font", "Noto Sans", "Noto Color Emoji";
+    font-size: 12px;
+    color: @fg;
+}
+
+window#waybar {
+    background: @bg;
+    border-bottom: 1px solid @border;
+}
+
+tooltip {
+    background: rgba(18, 18, 28, 0.9);
+    border: 1px solid @border;
+    border-radius: 10px;
+}
+
+tooltip label {
+    color: @fg;
+}
+
+#workspaces {
+    margin: 4px 0 4px 8px;
+    padding: 0 4px;
+    background: transparent;
+}
+
+#workspaces button {
+    padding: 0 6px;
+    margin: 4px 2px;
+    min-width: 22px;
+    color: @muted;
+    background: transparent;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+#workspaces button:hover {
+    background: @hover;
+    color: @fg;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+#workspaces button.active {
+    background: @active;
+    color: @neon-violet;
+    box-shadow: 0 0 6px rgba(191, 140, 255, 0.18);
+}
+
+#workspaces button.urgent {
+    background: rgba(255, 107, 147, 0.12);
+    color: @urgent;
+}
+
+#submap,
+#window,
+#tray,
+#mpris,
+#bluetooth,
+#backlight,
+#temperature,
+#wireplumber,
+#power-profiles-daemon,
+#battery,
+#clock,
+#custom-power {
+    margin: 4px 4px;
+    padding: 0 12px;
+    min-height: 26px;
+    background: @bg-alt;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+}
+
+#window {
+    color: @fg;
+    padding: 0 16px;
+}
+
+#submap {
+    color: @neon-cyan;
+}
+
+#tray {
+    padding: 0 10px;
+}
+
+#mpris {
+    color: @neon-blue;
+}
+
+#mpris.paused {
+    color: @muted;
+}
+
+#bluetooth {
+    color: @neon-purple;
+}
+
+#backlight {
+    color: @neon-blue;
+}
+
+#temperature {
+    color: @neon-purple;
+}
+
+#wireplumber {
+    color: @neon-blue;
+}
+
+#wireplumber.muted {
+    color: @muted;
+}
+
+#power-profiles-daemon {
+    color: @neon-violet;
+}
+
+#battery {
+    color: @fg;
+}
+
+#battery.warning {
+    color: #ffd166;
+}
+
+#battery.critical {
+    color: @urgent;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: @neon-cyan;
+}
+
+#clock {
+    color: @fg;
+    padding: 0 14px;
+}
+
+#custom-power {
+    color: @neon-purple;
+    padding: 0 14px;
+    margin-right: 8px;
+}
+
+#custom-power:hover {
+    background: rgba(240, 138, 232, 0.1);
+    color: #ffb3f3;
+}

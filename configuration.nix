@@ -4,6 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      <home-manager/nixos>
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -15,6 +16,7 @@
 
   networking.hostName = "nixoslaptop"; # Define your hostname.
   networking.networkmanager.enable = true;
+  networking.firewall.enable = true;
 
   time.timeZone = "Europe/Vienna";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -35,15 +37,23 @@
     '';
   };
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  hardware.graphics.enable = true;
+  hardware.amdgpu.initrd.enable = true;
+
   services.pipewire = {
     enable = true;
     pulse.enable = true;
   };
 
+  services.fstrim.enable = true;
   services.gvfs.enable = true;
   services.tumbler.enable = true;
   services.libinput.enable = true;
   services.printing.enable = true;
+  services.power-profiles-daemon.enable = true;
+  services.thermald.enable = true;
 
   services.greetd = {
     enable = true;
@@ -62,11 +72,17 @@
     shell = pkgs.bash;
   };
 
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.backupFileExtension = "backup";
+  home-manager.users.koma = import ./home.nix;
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
+  xdg.mime.enable = true;
 
   programs.hyprland = {
     enable = true;
@@ -80,6 +96,7 @@
   programs.xfconf.enable = true;
   programs.starship.enable = true;
   programs.tmux.enable = true;
+  programs.waybar.enable = true;
 
   programs.thunar = {
     enable = true;
@@ -114,6 +131,15 @@
     unzip
     zip
     mpv
+    overskride
+    mako
+  ];
+
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
+    nerd-fonts.hack
   ];
 
   services.openssh.enable = true;
