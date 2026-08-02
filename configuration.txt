@@ -4,9 +4,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      <home-manager/nixos>
     ];
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -135,8 +134,6 @@
     overskride
     mako
     jdk8
-    wl-clipboard
-    cliphist
   ];
 
   fonts.packages = with pkgs; [
