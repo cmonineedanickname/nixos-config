@@ -2,7 +2,7 @@
   description = "Max's NixOS Flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -15,9 +15,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, zen-browser, ... }:
   let
     system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
   in {
     nixosConfigurations.nixoslaptop = nixpkgs.lib.nixosSystem {
       inherit system;
@@ -26,8 +27,10 @@
         ./configuration.nix
         home-manager.nixosModules.home-manager
         {
-          environment.systemPackages = [
-            zen-browser.packages.${system}.default
+          environment.systemPackages = with pkgs; [
+            zen-browser.default
+            wl-clipboard
+            cliphist
           ];
         }
       ];
