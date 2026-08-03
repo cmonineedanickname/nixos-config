@@ -137,6 +137,11 @@
     jdk8
     wl-clipboard
     cliphist
+    kdePackages.qtsvg
+    kdePackages.kio
+    kdePackages.kio-fuse
+    kdePackages.kio-extras
+    kdePackages.dolphin
   ];
 
   fonts.packages = with pkgs; [
